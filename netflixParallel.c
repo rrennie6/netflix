@@ -144,22 +144,18 @@ int main(int argc, char *argv[]){
             	double pNorm = 0;
                 q[positionCounter*(factorCountPlusOne)] = i;
                 p[positionCounter*(factorCountPlusOne)] = u;
-//                printf("RANK: %d  QFIRST: %f  PFIRST: %f\n", rank, p[positionCounter*(factorCountPlusOne)], q[positionCounter*(factorCountPlusOne)]);
             	for(f = 1; f < (factorCountPlusOne); f++){
             		double qi = q[positionCounter*(factorCountPlusOne)+f];
-//                    printf("rank: %d  qVal: %f  index: %d\n", rank, qi, positionCounter*(factorCountPlusOne)+f);
             		double pu = p[positionCounter*(factorCountPlusOne)+f];
             		qNorm += qi*qi;
             		pNorm += pu*pu;
             		q[positionCounter*(factorCountPlusOne)+f] += gamma*(e*pu-(llamda*qi));
             		p[positionCounter*(factorCountPlusOne)+f] += gamma*(e*qi-(llamda*pu));
             	}
-//                if(y == 50) exit(0);
             	e = e*e;
                 double noise = llamda*(qNorm+pNorm);
             	totalError += (e+noise);
                 positionCounter++;
-//                printf("positionCounter: %d\n", positionCounter);
             }
         }
     }
@@ -236,13 +232,13 @@ int main(int argc, char *argv[]){
         printf("\n");
 
         /* write output */
-/*        fprintf(output, "user: 427501 movie:  8 rating: %f\n", dotProduct(q, p, 8, 427501, factorCount));
+        fprintf(output, "user: 427501 movie:  8 rating: %f\n", dotProduct(q, p, 8, 427501, factorCount));
         fprintf(output, "user: 260749 movie: 18 rating: %f\n", dotProduct(q, p, 18, 260749, factorCount));
         fprintf(output, "user: 311872 movie: 28 rating: %f\n", dotProduct(q, p, 28, 311872, factorCount));
         fprintf(output, "user:  73318 movie: 30 rating: %f\n", dotProduct(q, p, 30, 73318, factorCount));
         fprintf(output, "user: 182071 movie: 30 rating: %f\n", dotProduct(q, p, 30, 182071, factorCount));
 
-*/  
+  
     }
     // free matrix pointers
     free(qHolder);
